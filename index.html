@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanShift Technologies Ltd. | Software & Venture Studio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #0f4c81; 
+            --tech-blue: #2563eb;     
+            --accent-cyan: #06b6d4;   
+            --slate-dark: #0f172a;    
+            --slate-light: #f8fafc;   
+            --white: #ffffff;
+            --text-grey: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--slate-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; color: var(--slate-dark); }
+        a { text-decoration: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 90px; /* Increased height slightly */
+            padding: 0 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid #e2e8f0;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+
+        .logo-img {
+            height: 75px; /* INCREASED LOGO SIZE HERE */
+            width: auto;
+        }
+
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { color: var(--slate-dark); font-weight: 500; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--tech-blue); }
+
+        .btn-contact {
+            background-color: var(--primary-blue); color: var(--white);
+            padding: 10px 24px; border-radius: 6px; font-weight: 600; transition: all 0.3s;
+        }
+        .btn-contact:hover { background-color: var(--tech-blue); transform: translateY(-2px); }
+
+        /* --- HERO SECTION --- */
+        header {
+            min-height: 90vh; display: flex; align-items: center; position: relative;
+            background: radial-gradient(circle at top right, #eff6ff 0%, #ffffff 40%);
+            padding: 100px 5%;
+        }
+
+        .hero-content { max-width: 700px; z-index: 2; }
+
+        .badge {
+            background: rgba(15, 76, 129, 0.1); color: var(--primary-blue);
+            padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700;
+            display: inline-block; margin-bottom: 25px; letter-spacing: 1px;
+        }
+
+        h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 25px; }
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-grey); margin-bottom: 40px; max-width: 550px; }
+
+        .tech-image-grid {
+            position: absolute; right: 5%; top: 15%; width: 40%;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; opacity: 0.9;
+        }
+
+        .tech-img {
+            border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%; height: 250px; object-fit: cover; transition: transform 0.5s;
+        }
+        .tech-img:hover { transform: scale(1.02); }
+        .tech-img:nth-child(2) { margin-top: 50px; }
+
+        /* --- VISION SECTION --- */
+        .vision-section { background: var(--slate-dark); color: var(--white); padding: 100px 5%; text-align: center; }
+        .vision-content h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 30px; }
+        .vision-content p { font-size: 1.5rem; max-width: 800px; margin: 0 auto; color: #cbd5e1; font-weight: 300; }
+
+        /* --- SERVICES --- */
+        section { padding: 100px 5%; }
+        .section-header { margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .service-card {
+            background: var(--white); padding: 40px; border-radius: 12px;
+            border: 1px solid #e2e8f0; transition: all 0.3s;
+        }
+        .service-card:hover {
+            border-color: var(--tech-blue); box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+            transform: translateY(-5px);
+        }
+        .service-icon { font-size: 2.5rem; color: var(--tech-blue); margin-bottom: 25px; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .service-card ul { list-style: none; color: var(--text-grey); }
+        .service-card li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .service-card li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; color: var(--accent-cyan); }
+
+        /* --- VENTURES --- */
+        .ventures-section { background: var(--slate-light); }
+        .ventures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .venture-card {
+            background: var(--white); border-radius: 12px; overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .venture-img { height: 250px; width: 100%; object-fit: cover; }
+        .venture-body { padding: 30px; }
+        .venture-tag { color: var(--primary-blue); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+        .venture-body h3 { font-size: 1.5rem; margin: 10px 0; }
+
+        /* --- PARTNERS --- */
+        .partners-section { text-align: center; padding: 80px 5%; border-top: 1px solid #e2e8f0; }
+        .partners-logo-grid { display: flex; justify-content: center; align-items: center; gap: 60px; margin-top: 40px; flex-wrap: wrap; }
+        .partner-text { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #64748b; opacity: 0.6; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--slate-dark); color: var(--white); padding: 80px 5% 40px; }
+        .footer-grid {
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px;
+            margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px;
+        }
+        .footer-brand h4 { color: var(--white); font-size: 1.5rem; margin-bottom: 20px; }
+        .footer-col h5 { color: var(--white); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
+        .footer-col ul { list-style: none; } .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--white); }
+
+        @media (max-width: 900px) {
+            .tech-image-grid { display: none; }
+            .hero-content { max-width: 100%; text-align: center; }
+            h1 { font-size: 3rem; } .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <img src="UrbanShift Tech LOGO.jpg" alt="UrbanShift Tech" class="logo-img">
+            <span style="font-weight: 700; font-size: 1.5rem; color: var(--primary-blue);">URBANSHIFT</span>
+        </div>
+        <div class="nav-links">
+            <a href="#vision">Vision</a>
+            <a href="#services">What We Do</a>
+            <a href="#ventures">Portfolio</a>
+            <a href="#partners">Partners</a>
+        </div>
+        <a href="mailto:hiswillsichilima410@gmail.com" class="btn-contact">Get a Quote</a>
+    </nav>
+
+    <header>
+        <div class="hero-content" data-aos="fade-right">
+            <span class="badge">ZAMBIA'S PREMIER SOFTWARE HOUSE</span>
+            <h1>Building the Digital Infrastructure of Africa.</h1>
+            <p class="hero-subtitle">We create world-class mobile apps, websites, and enterprise software. We buy, sell, and scale digital assets to empower the next generation of African business.</p>
+            <a href="#services" class="btn-contact">View Services</a>
+        </div>
+        <div class="tech-image-grid" data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop" alt="Coding" class="tech-img">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Data Analytics" class="tech-img">
+        </div>
+    </header>
+
+    <section id="vision" class="vision-section">
+        <div class="vision-content" data-aos="fade-up">
+            <h2>Our Vision</h2>
+            <p>"To accelerate Africa's digital economy by building software that solves hard problems, and creating a marketplace where digital innovation can be bought, sold, and scaled."</p>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-header">
+            <h2>What We Do</h2>
+            <p style="max-width: 600px; color: var(--text-grey);">From custom development to software acquisition, we cover the full lifecycle of digital products.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up">
+                <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h3>Custom Development</h3>
+                <ul>
+                    <li>Mobile Apps (iOS & Android)</li>
+                    <li>Corporate Websites & SEO</li>
+                    <li>Custom CRM & Dashboards</li>
+                    <li>E-Commerce Solutions</li>
+                </ul>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <h3>Software Trading</h3>
+                <ul>
+                    <li>Buying & Selling Source Code</li>
+                    <li>Acquiring Micro-SaaS Startups</li>
+                    <li>Software Licensing</li>
+                    <li>IP Valuation & Transfer</li>
+                </ul>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon"><i class="fa-solid fa-rocket"></i></div>
+                <h3>Venture Building</h3>
+                <ul>
+                    <li>MVP Development for Startups</li>
+                    <li>Tech Incubation</li>
+                    <li>Go-to-Market Strategy</li>
+                    <li>Product scaling (e.g., ZamRide)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="ventures" class="ventures-section">
+        <div class="section-header">
+            <h2>Our Portfolio</h2>
+        </div>
+        <div class="ventures-grid">
+            <div class="venture-card" data-aos="fade-up">
+                <img src="zamride booking system.jpg" class="venture-img" alt="ZamRide Bus Fleet">
+                <div class="venture-body">
+                    <span class="venture-tag">Mobility</span>
+                    <h3>ZamRide</h3>
+                    <p>Smart intercity bus booking ecosystem connecting travelers across Zambia.</p>
+                </div>
+            </div>
+            <div class="venture-card" data-aos="fade-up" data-aos-delay="100">
+    <img src="@ the airport.jpg" class="venture-img" alt="Smart Dining Interface">
+    <div class="venture-body">
+        <span class="venture-tag">Hospitality Tech</span>
+        <h3>@ the Airport</h3>
+        <p>A fully integrated 'Smart Lounge' operating system. Features contactless ordering, digital boarding passes, and kitchen display systems (KDS).</p>
+        <a href="pitch.html" style="color: var(--tech-blue); font-weight: 600; font-size: 0.9rem;">View Pitch <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</div>
+    </section>
+
+    <section id="partners" class="partners-section">
+        <h4 style="color: var(--text-grey); letter-spacing: 2px; margin-bottom: 20px;">STRATEGIC PARTNERS</h4>
+        <div class="partners-logo-grid" data-aos="fade-up">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-building-columns" style="font-size: 2.5rem; color: #64748b;"></i>
+                <span class="partner-text">PACRA</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="LencoLogo.jpg" alt="Lenco" style="height: 60px; width: auto; filter: grayscale(100%); opacity: 0.7;">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="UrbanShift Tech LOGO.jpg" style="height: 50px; background: white; padding: 2px; border-radius: 4px; margin-bottom: 15px;">
+                <p>UrbanShift Technologies Limited.<br>Lusaka, Zambia.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Services</h5>
+                <ul>
+                    <li><a href="#">App Development</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Software Store</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="mailto:hiswillsichilima410@gmail.com">hiswillsichilima410@gmail.com</a></li>
+                    <li><a href="tel:+26096200699">+260 962 006 99</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; font-size: 0.8rem; opacity: 0.6;">
+            &copy; 2026 UrbanShift Technologies Limited. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 100 });
+    </script>
+</body>
+</html>
